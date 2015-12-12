@@ -1,0 +1,72 @@
+1.( sqrt ( 6 ) )
+Exception in thread "main" java.util.EmptyStackException
+	at java.util.Stack.peek(Unknown Source)
+	at java.util.Stack.pop(Unknown Source)
+	at USERID.hw1.Evaluate.main(Evaluate.java:28)
+
+After reaching the second closing parenthesis, popping the operation "sqrt", evaluating it 
+on the value popped from stack vals, 6, the result, sqrt(6), gets pushed back on to the stack vals.
+The error with peek and pop comes from attempting to pop another operation from the "ops" stack 
+once the program has reached the second closing parenthesis. The "ops" stack is now empty so attempting to 
+pop a value from it results in the EmptyStackException.
+
+2. 2 + 3
+	3.0
+
+Because the program never reaches a closing parenthesis, the resulting value is just the last value to be 
+pushed onto the stack "vals", in double format, which is 3.0
+
+3. 2 + 3 + 4 + 5
+	5.0
+	
+Because the program never reaches a closing parenthesis, the resulting value is just the last value to be 
+pushed onto the stack "vals", in double format, which is 5.0
+
+4. sqrt ( 12 + 4 )
+	16.0
+	
+After reaching one closing parenthesis, the most previous operation and values is executed which is 12 + 4. Because 
+another closing parenthesis is never reached, the sqrt operation never gets a chance to be executed. The end result
+is the last value to be pushed back onto the "vals" stack in double form after performing an operation, which is 16.0.
+	
+6. ( sqrt ( e * pi ) )
+	2.922282365322278
+	
+The program executes as expected here, ignoring the leading parenthesis. Upon reaching the first closing parenthesis,
+e and pi are multiplied and the double result is pushed back onto the stack "vals". 
+Then once the program reaches the second closing parenthesis, the sqrt operation is executed on what was popped from 
+stack "vals", which is the result of e * pi. The final result is pushed back onto the stack "vals", and is taken off
+as output when the program ends.
+
+QUESTION 2:
+According to my implementation of the crossing point calculator, the worst case number of lookups for a M x N array
+would be MN + 2. The crossing point would be in the lower right corner, forcing the algorithm to iterate over every
+value in the array before reaching it (M times N), then check that the values above and to the left were both true 
+as well ( +2).
+
+Question 3: Stack Exercises
+1. Every time the pop() operation is executed, the value at array location
+a[--N] is returned. This is only one array inspection.
+2.Every time the push operation is executed, the value to be pushed
+is added onto the array at a[N] then N is incremented. This is also
+only one array inspection.
+3. The max amount of consecutive pops or "-" tokens that could
+appear in the string with 3N tokens without giving a "BAD OUTPUT" or exception is N. This would
+occur by pushing N strings, popping N strings, then pushing N more which results in 3N.
+4. The minimum number of "-" tokens that must appear is N. Could apply to the same case as 3. where
+we end up with a full stack of size N.
+5. 1.5N. For each letter pop it off - result with an empty stack.
+
+Question 4: BinaryStringSearch
+
+The maximum amount of word comparisons rank must perform on any input seems
+to be floor(log(base2)(N)+1). Assuming that for each word, or token comparison
+K letters are compared then the number of letter comparisons would be this
+result multiplied by K. 
+This formula fits with my output:
+N  Worst Case(token comparisons)
+-  ----------
+13    4
+4     3
+2     2
+1     1
